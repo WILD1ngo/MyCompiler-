@@ -13,6 +13,9 @@ public:
     virtual std::string printCode() {
         return "printCode";
     }
+    virtual std::string getVarDec() {
+        return "";
+    }
     virtual ~node() = default;
     virtual std::string getTypeName() const = 0;  
     //virtual std::string printCode();
@@ -203,7 +206,9 @@ class assign_node :public instraction_node {
     void set_source(std::unique_ptr<var_node> source) {
         _source = std::move(source);
     }
-    
+    std::string getVarDec() override {
+        return  _source->getVar();
+    }
     void set_value(std::unique_ptr<expression_node> value) {
         _value = std::move(value);
     }

@@ -1,5 +1,5 @@
 n = input
-i = 0
+i = 1
 label:
 output i
 i = i + 1

@@ -58,6 +58,7 @@
         "stack": "cpp",
         "algorithm": "cpp",
         "optional": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "sstream": "cpp"
     }
 }
