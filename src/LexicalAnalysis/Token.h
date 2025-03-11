@@ -1,6 +1,7 @@
 #ifndef TOKEN_FLAG
 #define TOKEN_FLAG
-
+#include <string>
+#include <iostream>
 
 
 enum class State {
@@ -31,4 +32,11 @@ enum class token_type
     END
 };
 
+
+struct Token
+{
+    std::string value;
+    token_type type;
+    Token(std::string v, token_type t) : value(v), type(t) {}
+};
 #endif

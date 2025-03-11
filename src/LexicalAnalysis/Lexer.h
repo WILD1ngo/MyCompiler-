@@ -6,12 +6,7 @@
 #include <vector>
 
 
-struct Token
-{
-    std::string value;
-    token_type type;
-    Token(std::string v, token_type t) : value(v), type(t) {}
-};
+
 
 
 
@@ -20,6 +15,7 @@ class Lexer
     public:
     Lexer(std::string);
     void print_tokens();
+    std::vector<Token> get_tokens() { return _tokens; }
     private:
     void insert_token(std::string, token_type);
 

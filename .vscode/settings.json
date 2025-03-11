@@ -52,6 +52,12 @@
         "xfacet": "cpp",
         "xhash": "cpp",
         "xlocinfo": "cpp",
-        "xtr1common": "cpp"
+        "xtr1common": "cpp",
+        "functional": "cpp",
+        "deque": "cpp",
+        "stack": "cpp",
+        "algorithm": "cpp",
+        "optional": "cpp",
+        "fstream": "cpp"
     }
 }

@@ -1,0 +1,14 @@
+instr' ->instractions 
+instractions -> instractions instr
+instractions -> instr
+instr -> IDENT SET expr
+instr -> IF rel THEN instr
+instr -> LABEL
+instr -> GOTO LABEL
+instr -> OUTPUT term
+rel -> term LESS_THAN term
+expr -> term
+expr -> term plus term
+term -> INPUT
+term -> IDENT
+term -> INT

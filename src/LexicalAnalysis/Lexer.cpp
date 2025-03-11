@@ -24,7 +24,7 @@ Lexer::Lexer(std::string untokenized_string)
         _current_state = next_state;
         if (_current_state != State::START) _current_token += c;
     }
-
+    insert_token("-1", token_type::END);
 }
 
 void Lexer::print_tokens()
