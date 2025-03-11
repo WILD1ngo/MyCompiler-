@@ -1,0 +1,23 @@
+indexto = input
+
+
+index = 1
+cur = 0
+next = 1
+
+
+
+loop:
+output cur
+
+temp = cur + next 
+cur = next
+next = temp
+
+
+index = index + 1
+
+if indexto < index then goto end:
+
+goto loop:
+end:

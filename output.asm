@@ -1,47 +1,69 @@
- global _start 
+global _start 
     
 section .bss
     buffer resb 100       ; Input buffer
     outbuffer resb 20     ; Output buffer for multi-digit numbers
-    n resq 1              ; 64-bit integer for input
-    i resq 1              ; 64-bit integer for counter
+    next resq 1
+    cur resq 1
+    temp resq 1
+    index resq 1
+    indexto resq 1
 
 section .data
     newline db 10         ; Newline character
 
 section .text 
-_start: 
-; Read input 
+_start: ; Read input 
 call read_int
-mov [n], rax
 
 
-mov [n] , rax
+mov [indexto] , rax
+
+mov rax, 1
+mov [index] , rax
 
 mov rax, 0
-mov [i] , rax
+mov [cur] , rax
 
-label:
-mov rax , [i]
+mov rax, 1
+mov [next] , rax
+
+loop:
+mov rax , [cur]
 call print_int_ln
+
+mov rax , [next]
+push rax
+mov rax , [cur]
+pop rbx
+add rax, rbx
+mov [temp] , rax
+
+mov rax , [next]
+mov [cur] , rax
+
+mov rax , [temp]
+mov [next] , rax
 
 mov rax, 1
 push rax
-mov rax , [i]
+mov rax , [index]
 pop rbx
 add rax, rbx
-mov [i] , rax
+mov [index] , rax
 
-mov rax , [n]
+mov rax , [index]
 push rax
-mov rax , [i]
+mov rax , [indexto]
 pop rbx
 cmp rax, rbx
 
 jge iflabel0
 
-jmp label
+jmp end
 iflabel0:
+jmp loop
+end:
  
     ; Exit
     mov rax, 60           ; sys_exit
@@ -161,3 +183,4 @@ print_int_ln:
     ; Restore registers
     pop rax
     ret
+

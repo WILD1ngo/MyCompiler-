@@ -23,5 +23,5 @@ class Lexer
     std::vector<Token> _tokens;
 };
 
-
+bool end_of_token(State _current_state ,State next_state);
 #endif

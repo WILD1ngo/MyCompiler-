@@ -145,7 +145,7 @@ class input_node :public term_node {
     public:
     input_node() {}
     std::string printCode() override {
-        return std::string("; Read input \ncall read_int\nmov [n], rax\n\n");
+        return std::string("; Read input \ncall read_int\n\n");
     
     }
     std::string getTypeName() const override {

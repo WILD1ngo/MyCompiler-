@@ -17,12 +17,15 @@ LexerFSM::LexerFSM()
     for (char c = 'a'; c <= 'z'; ++c) {
         _stateMap[CurrentState(State::START, c)] = State::IDENT;
         _stateMap[CurrentState(State::IDENT, c)] = State::IDENT;
+        _stateMap[CurrentState(State::SYMBOL, c)] = State::IDENT;
     }
 
     // Number transitions
     for (char c = '0'; c <= '9'; ++c) {
         _stateMap[CurrentState(State::START, c)] = State::NUMBER;
+        _stateMap[CurrentState(State::SYMBOL, c)] = State::NUMBER;
         _stateMap[CurrentState(State::NUMBER, c)] = State::NUMBER;
+
         _stateMap[CurrentState(State::IDENT, c)] = State::IDENT;
         
     }
@@ -31,7 +34,18 @@ LexerFSM::LexerFSM()
       _stateMap[CurrentState(State::START, '=')] = State::SYMBOL;
       _stateMap[CurrentState(State::START, '+')] = State::SYMBOL;
       _stateMap[CurrentState(State::START, '<')] = State::SYMBOL;
-      _stateMap[CurrentState(State::SYMBOL, '=')] = State::SYMBOL;
+    
+      _stateMap[CurrentState(State::NUMBER, '=')] = State::SYMBOL;
+      _stateMap[CurrentState(State::NUMBER, '+')] = State::SYMBOL;
+      _stateMap[CurrentState(State::NUMBER, '<')] = State::SYMBOL;
+
+
+      _stateMap[CurrentState(State::IDENT, '=')] = State::SYMBOL;
+      _stateMap[CurrentState(State::IDENT, '+')] = State::SYMBOL;
+      _stateMap[CurrentState(State::IDENT, '<')] = State::SYMBOL;
+
+      
+      _stateMap[CurrentState(State::SYMBOL, '=')] = State::SYMBOL; //==
 
 
 

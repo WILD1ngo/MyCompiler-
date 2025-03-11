@@ -14,7 +14,7 @@ Lexer::Lexer(std::string untokenized_string)
             std::cerr << "Invalid character: " << (int)c << " ; At Line: " << line_number<< std::endl;
             exit(1);
         }
-        if (next_state == State::START &&_current_state != State::START) {
+        if (end_of_token(_current_state, next_state)) {
             _current_token_type = state_to_token(_current_state, _current_token);
             
             insert_token(_current_token, _current_token_type);
@@ -27,6 +27,14 @@ Lexer::Lexer(std::string untokenized_string)
     insert_token("-1", token_type::END);
 }
 
+bool end_of_token(State _current_state ,State next_state)
+{
+    return (next_state == State::START &&_current_state != State::START )
+    || (next_state == State::SYMBOL && _current_state == State::NUMBER)
+    || (next_state == State::NUMBER && _current_state == State::SYMBOL)
+    || (next_state == State::SYMBOL && _current_state == State::IDENT)
+     || (next_state == State::IDENT && _current_state == State::SYMBOL);
+}
 void Lexer::print_tokens()
 {
     for (Token t : _tokens) {
